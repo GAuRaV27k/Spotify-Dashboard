@@ -1,94 +1,200 @@
-# Spotify Dashboard
+```markdown
+# 🎵 Spotify Dashboard 🎛️
 
-A Jupyter Notebook-based dashboard for exploring and visualizing Spotify listening data and playlists. This repository contains a single Jupyter Notebook that demonstrates data processing, visualization, and examples for working with the Spotify Web API or exported listening history.
+An interactive data analysis and visualization project exploring Spotify audio features to uncover patterns in tempo, energy, danceability, valence, loudness and track popularity.
 
-## Table of Contents
+Live notebook: `Spotify_Dashboard.ipynb`  
+Dataset: `SpotifyFeatures.csv`
 
-1. Overview
-2. Features
-3. Getting started
-   - Prerequisites
-   - Install
-   - Usage
-4. Notebook structure
-5. Data sources
-6. Customization
-7. Troubleshooting & Notes
-8. Contributing
-9. License
+---
 
-## Overview
+## 📚 Table of Contents
 
-The Spotify Dashboard is a compact, notebook-driven project designed to help you analyze Spotify listening history, playlists, and track-level metadata. It is ideal for learning, prototyping visualizations, and exporting insights from your Spotify data.
+- [Project Overview](#project-overview)
+- [Key Features](#key-features)
+- [Dataset](#dataset)
+- [Files Included](#files-included)
+- [Installation](#installation)
+- [How to Run](#how-to-run)
+- [Notebook Walkthrough](#notebook-walkthrough)
+- [Visualizations and Insights](#visualizations-and-insights)
+- [Suggested Improvements](#suggested-improvements)
+- [Contributing](#contributing)
+- [License](#license)
+- [Author](#author)
 
-## Features
+---
 
-- Interactive visualizations (matplotlib / seaborn / plotly examples)
-- Examples for ingesting Spotify export files or using the Spotify Web API
-- Data cleaning and basic analysis pipelines inside the notebook
-- Exportable charts and summary CSVs
+## 🚀 Project Overview
 
-## Getting started
+This project loads a local Spotify audio-features CSV, performs cleaning and feature engineering, and produces an interactive exploratory dashboard using Python. The goal is to explore relationships between musical features (tempo, energy, danceability, valence, loudness, etc.) and target variables such as popularity and genre.
 
-### Prerequisites
+---
 
-- Python 3.8+
-- Jupyter Notebook or JupyterLab
-- pip
+## ✨ Key Features
 
-Optional:
-- A Spotify Developer account and client credentials (for using the Web API)
+- 🧹 Data cleaning: duplicate removal and null handling  
+- 🔁 Feature transformations (e.g., converting `duration_ms` → `duration_min`)  
+- 🔎 Exploratory Data Analysis (EDA)  
+- 📈 Visualizations with Matplotlib, Seaborn and Plotly  
+- 🧩 Interactive charts in a Jupyter Notebook environment
 
-### Install
+---
+
+## 📂 Dataset
+
+Filename: `SpotifyFeatures.csv` (included in repository)
+
+Important columns:
+- 🎵 `track_name` — Name of the song
+- 👤 `artist_name` — Artist of the track
+- 🏷️ `genre` — Genre classification
+- 🥁 `tempo` — Beats per minute
+- ⚡ `energy` — Intensity or activity level (0–1)
+- 💃 `danceability` — How suitable the track is for dancing (0–1)
+- 😊 `valence` — Musical positiveness (0–1)
+- 🔊 `loudness` — Overall loudness (in dB)
+- ⏱️ `duration_ms` — Track length in milliseconds
+- ⌛ `duration_min` — Derived: duration in minutes
+
+Notes:
+- The dataset is expected to be a local CSV placed in the project root.
+- If any columns are missing or named differently, update the notebook or script accordingly.
+
+---
+
+## 🗂️ Files Included
+
+- `Spotify_Dashboard.ipynb` — Jupyter Notebook with the full analysis and interactive visualizations.  
+- `SpotifyFeatures.csv` — Source dataset.  
+- `spotify_dashboard.py` — (optional) Python script with helper functions and plotting utilities (if present in repo).  
+- `README.md` — This documentation.
+
+---
+
+## ⚙️ Installation
 
 1. Clone the repository:
+   ```
    git clone https://github.com/GAuRaV27k/Spotify-Dashboard.git
-2. Change into the repo directory:
+   ```
+2. Change to project directory:
+   ```
    cd Spotify-Dashboard
-3. Install dependencies (example):
-   python -m pip install -r requirements.txt
+   ```
+3. (Recommended) Create and activate a virtual environment:
+   ```
+   python -m venv venv
+   ```
+   - On macOS / Linux: `source venv/bin/activate`  
+   - On Windows (PowerShell): `.\venv\Scripts\Activate.ps1`
+4. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
 
-If there is no requirements.txt, install commonly used packages:
-   python -m pip install pandas numpy matplotlib seaborn plotly jupyter
+If `requirements.txt` is not included, install commonly used packages:
+```
+pip install pandas numpy matplotlib seaborn plotly jupyter
+```
 
-### Usage
+---
 
-1. Launch Jupyter:
+## ▶️ How to Run
+
+Option A — Jupyter Notebook (recommended)  
+1. Start Jupyter:
+   ```
    jupyter notebook
-2. Open the main notebook in the repository (e.g., spotify_dashboard.ipynb)
-3. Follow the cells in order. If using the Spotify Web API, set your credentials as environment variables or in a config cell before running API calls.
+   ```
+2. Open `Spotify_Dashboard.ipynb` and run cells top to bottom.
 
-## Notebook structure
+Option B — Script (if `spotify_dashboard.py` exists)  
+1. Ensure the dataset is in the project root.  
+2. Run:
+   ```
+   python spotify_dashboard.py
+   ```
+3. The script will produce saved figures or a local HTML (depending on implementation).
 
-The notebook is organized into sections with explanatory cells and runnable code blocks, typically including:
-- Setup: imports and configuration
-- Data loading: reading exported files or API fetch
-- Data cleaning and transformation
-- Visualizations and analysis
-- Export and save results
+---
 
-## Data sources
+## 🧭 Notebook Walkthrough
 
-You can power the notebook using one of these inputs:
-- Spotify data export (listening history) downloaded from your Spotify account
-- Playlist snapshot exports
-- Spotify Web API (requires developer credentials)
+High-level steps performed in the notebook:
 
-## Customization
+1. Load CSV into pandas DataFrame.  
+2. Inspect: `.head()`, `.info()`, `.describe()`  
+3. Clean:
+   - 🗑️ Drop exact duplicate rows
+   - 🩺 Handle missing values (drop or impute — explained in notebook)
+4. Feature engineering:
+   - ⌛ Convert `duration_ms` to `duration_min`
+   - ➕ Create any derived columns used in visualizations
+5. EDA & Visualizations:
+   - 📊 Distribution plots for popularity, energy, valence, tempo
+   - 🔗 Correlation heatmap to identify relationships between numeric features
+   - 🔍 Scatter plots for key relationships (e.g., valence vs. popularity)
+   - 🏆 Top artists/genres analysis (bar charts)
+   - 🎭 Genre-wise distributions (boxplots / violin plots)
+6. 🧪 Interactive charts via Plotly for exploration
 
-- Replace visualization styles and libraries to suit your preferences
-- Extend the notebook with additional analysis (e.g., recommendations, temporal analysis)
-- Add robust error handling for API rate limits and missing data
+---
 
-## Troubleshooting & Notes
+## 📊 Visualizations and Insights
 
-- If plots do not render in Jupyter, ensure you enable inline plotting (e.g., %matplotlib inline) or use plotly.offline.init_notebook_mode()
-- For large listening histories, consider sampling or incremental processing to avoid memory issues
+Example insights you can obtain from the notebook:
 
-## Contributing
+- 🎧 Which genres are most energetic or most danceable  
+- ❤️ Relationship between valence (musical positivity) and popularity  
+- 👑 Artists with the most tracks in the dataset  
+- 🥁 Distribution of tempo and loudness across genres
 
-Contributions, suggestions, and improvements are welcome. Please open an issue or submit a pull request with a clear description of changes.
+(See the notebook for all figures and interactive charts.)
 
-## License
+---
 
-Include a license file or state the license here (e.g., MIT).
+## 🔭 Suggested Improvements
+
+- 🤖 Add more advanced modeling (clustering to group similar songs, or regression to predict popularity)  
+- 🌐 Augment dataset with external metadata (release date, album popularity, region-specific popularity)  
+- 🖥️ Create a Streamlit or Dash app for a polished interactive dashboard  
+- 📏 Normalize loudness and tempo when comparing across genres  
+- ✅ Add automated tests for data cleaning steps and helper functions
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome. Suggested process:
+1. Fork the repository.  
+2. Create a feature branch:
+   ```
+   git checkout -b feature/your-feature
+   ```
+3. Make your changes and add tests if applicable.  
+4. Commit your changes and push the branch.  
+5. Open a Pull Request describing your changes.
+
+Please follow the existing code style and include clear commit messages.
+
+---
+
+## 🧾 License
+
+This project is provided "as-is". Please add a LICENSE file to specify licensing (e.g., MIT) if you want to permit reuse.
+
+---
+
+## 👨‍💻 Author
+
+Gaurav Kaushik  
+B.Tech in Artificial Intelligence and Machine Learning (RGPV, Bhopal)  
+GitHub: https://github.com/GAuRaV27k
+
+---
+
+<img width="1255" height="450" alt="1newplot" src="https://github.com/user-attachments/assets/7b09eacc-d883-4977-bf4d-c28e619ed78f" />
+<img width="1255" height="450" alt="newplot" src="https://github.com/user-attachments/assets/d7716e37-6a27-45a6-a3a3-f79a0a5f7bae" />
+****<img width="515" height="435" alt="image" src="https://github.com/user-attachments/assets/39f3f572-eb15-4b50-9af7-beaa849776bb" />
+
