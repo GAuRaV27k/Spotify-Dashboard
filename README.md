@@ -65,7 +65,7 @@ The goal is to explore relationships between musical features (tempo, energy, da
 - `SpotifyFeatures.csv` — Source dataset
 - `README.md` — Project documentation  
 <img width="1255" height="450" alt="newplot" src="https://github.com/user-attachments/assets/bc52f4a9-4045-4352-b7d7-3a0d5100a4e2" />
-<img width="1255" height="450" alt="1newplot" src="https://github.com/user-attachments/assets/7ba63c16-048f-412b-bfd9-a932ba5f1438" />
+<img width="1255" height="450" alt="newplot" src="https://github.com/user-attachments/assets/879ff6da-fa21-4562-aa86-bafaa939b46a" />
 <img width="515" height="435" alt="image" src="https://github.com/user-attachments/assets/02993557-b28c-4060-91b9-1291fb83c830" />
 
 ---
